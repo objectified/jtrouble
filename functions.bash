@@ -219,14 +219,14 @@ function patternConf2Pattern() {
 
     conf=( $( cat "`dirname $0`/log_patterns.conf" ) )
 
-    for i in $(seq 0 $((${#conf[@]} - 1))); do
+    for (( i=0; i<${#conf[@]}; i++ )); do
         line="${conf[$i]}"
         if ! [[ "$line" =~ ^# ]]; then # ignore comment lines
             line=$(echo $line | sed 's/\./\\./g')
             if [[ $i -lt ${#conf[@]}-1 ]]; then
-                PATTERN+="$line\|"
+                PATTERN="${PATTERN}${line}\|"
             else
-                PATTERN+="$line"
+                PATTERN="${PATTERN}${line}"
             fi
         fi
     done
