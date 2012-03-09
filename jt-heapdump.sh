@@ -8,6 +8,8 @@ ensureJavaProcessUser "$JAVA_PID"
 
 dump_file=$(createHeapDump)
 
+echo "${dump_file}"
+
 if [ "$?" = "0" ]; then
     exit 0
 else

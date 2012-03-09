@@ -53,7 +53,7 @@ function requirePidAndApptype() {
 }
 
 function findJavaDir() {
-    local BIN_PATH=$(ps -eo comm,args -p $JAVA_PID | grep java | awk '{ print $2 }')
+    local BIN_PATH=$(ps -o comm,args -p $JAVA_PID | grep java | awk '{ print $2 }')
     local JAVA_DIR=$(dirname "$BIN_PATH")
     echo "$JAVA_DIR"
 
@@ -100,7 +100,7 @@ function ensureJavaProcessUser() {
     local PID_RE="^[[:space:]]*$1"
     local CUR_UID=`id -u`   
 
-    PROCESS_UID=$(ps -eo pid,uid,comm,args | grep $PID_RE | awk '{ print $2 }')
+    PROCESS_UID=$(ps -o pid,uid,comm,args | grep $PID_RE | awk '{ print $2 }')
 
     if [ "$PROCESS_UID" != "$CUR_UID" ]; then
         echo "Script must run under the same user as the Java process"
