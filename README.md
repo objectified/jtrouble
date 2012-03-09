@@ -12,8 +12,8 @@ Creates a thread dump of the running process. It does not use the jstack tool pr
 #### jt-heapdump.sh
 Creates a heap dump (a snapshot of all objects in memory) of the currently running Java process. This can become quite large depending on how big you allow your heap to grow, so make sure you have enough disk space before running this script. It uses the JVM provided JMap tool under the hood. It takes multi JVM environments in account, as it uses the JMap binary that is located inside the JRE that the container runs on.
 
-#### jt-heavyprocesses.sh
-Lists the top 10 Java threads by CPU usage, including their position in the stack. Under the hood, it uses the Unix top utility to list the heaviest threads, creates a thread dump, takes the hex value of the thread ID and relates this to the thread dump to get to the stack position.
+#### jt-heavythreads.sh
+Lists the top 10 Java threads by CPU usage, including their position in the stack. Under the hood, it uses the Unix top utility to list the heaviest threads, creates a thread dump, takes the hex value of the thread ID and relates this to the thread dump to get to the stack position. The -k parameter can be used to optionally keep the thread dump that was created while running this script. 
 
 #### jt-loginspect.sh
 Inspects the standard application server log file for dangerous patterns. It builds a grep regular expression based on the log patterns in log_patterns.conf and searches the last 5000 lines of the log file for this regular expression.
